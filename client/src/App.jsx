@@ -12,6 +12,7 @@ import { Home } from './components/Boxes/Home'
 import { Create } from './components/Boxes/Create'
 import { Edit } from './components/Boxes/Edit'
 import { Read } from './components/Boxes/Read'
+import { HomeContainerPage } from './components/containers/HomeContainer'
 
 
 
@@ -37,7 +38,8 @@ export function App() {
             <Route path="/admin/students" element={<Home />} />
               <Route path="/admin/create" element={<Create />} />
               <Route path="/admin/edit/:id" element={<Edit />} />
-              <Route path="/admin/read/:id" element={<Read />} />
+            <Route path="/admin/read/:id" element={<Read />} />
+            <Route path='/admin/container' element={<HomeContainerPage/>}/>
 
             </Route>
 

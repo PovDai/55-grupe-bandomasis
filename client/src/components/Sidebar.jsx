@@ -28,7 +28,7 @@ export function Sidebar() {
                     </h6>
                     <ul className="nav nav-pills flex-column">
                         <li className="nav-item">
-                            <Link className="nav-link d-flex align-items-center gap-2 " to="/#">
+                            <Link className="nav-link d-flex align-items-center gap-2 " to="/admin/container">
                                 All Containers
                             </Link>
                         </li>

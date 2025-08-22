@@ -6,11 +6,11 @@ import { postRegister } from './src/api/public/postRegister.js';
 import { postLogin } from './src/api/public/postLogin.js';
 import { getLogin } from './src/api/public/getLogin.js'
 import { PORT } from './src/env.js';
-import { getBoxById } from './src/api/public/getBoxById.js';
-import { editBoxById } from './src/api/public/editBoxById.js';
-import { deleteBoxById } from './src/api/public/deleteBox.js';
-import { getBox } from './src/api/public/getBox.js';
-import { addBox } from './src/api/public/addBox.js';
+import { getBoxById } from './src/api/admin/getBoxById.js';
+import { editBoxById } from './src/api/admin/editBoxById.js';
+import { deleteBoxById } from './src/api/admin/deleteBox.js';
+import { getBox } from './src/api/admin/getBox.js';
+import { addBox } from './src/api/admin/addBox.js';
 import { cookieParser } from './src/middleware/cookieParser.js'
 import { userData } from './src/middleware/userData.js'
 

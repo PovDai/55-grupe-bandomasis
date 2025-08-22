@@ -38,7 +38,7 @@ export function Create() {
             <div className='row'>
                 <h3>Add Box</h3>
                 <div className='d-flex justify-content-end'>
-                    <Link to='/admin/students' className='btn btn-success'>Home</Link>
+                    <Link to='/admin/students' className='btn btn-success'>Back</Link>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className='form-group my-3'>
@@ -51,16 +51,17 @@ export function Create() {
                         <input type='number' required
                                onChange={e => setValues({ ...values, weight: e.target.value })} />
                     </div>
-                    <div className='form-group my-3'>
+
+                   <div className='form-group my-3'>
                         <label>Image</label>
                         <textarea required
                                   value={values.image}
                                   onChange={e => setValues({ ...values, image: e.target.value })}></textarea>
-                    </div>
+                    </div> 
                   <div className='form-group my-3'>
     <label>Flammable</label>
     <select
-        className='form-select'
+        className='form-select select-short'
         required
         value={values.flammable}
         onChange={e => setValues({ ...values, flammable: e.target.value })}
@@ -74,7 +75,7 @@ export function Create() {
 <div className='form-group my-3'>
     <label>Perishable</label>
     <select
-        className='form-select'
+        className='form-select select-short'
         required
         value={values.perishable}
         onChange={e => setValues({ ...values, perishable: e.target.value })}
@@ -83,7 +84,8 @@ export function Create() {
         <option value='yes'>Taip</option>
         <option value='no'>Ne</option>
     </select>
-</div>
+                    </div>
+                    
                     <button type='submit' className='btn btn-success my-3'>Save</button>
                 </form>
             </div>
