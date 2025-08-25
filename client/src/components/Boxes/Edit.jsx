@@ -72,7 +72,7 @@ export function Edit() {
   if (error) return <div className="text-danger">{error}</div>;
 
   return (
-    <div className="container-fluid vw-100 vh-100 bg-primary p-4">
+    <div className="container-fluid  bg-primary p-4">
       <h1>Edit Box {id}</h1>
       <Link to="/admin/students" className="btn btn-success mb-3">Back</Link>
 

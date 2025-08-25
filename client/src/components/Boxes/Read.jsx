@@ -22,7 +22,7 @@ import { Link, useParams } from "react-router"
   if (!box) return <p>Loading...</p>;
 
   return (
-    <div className="container-fluid vw-100 vh-100 bg-primary">
+    <div className="container-fluid  bg-primary">
       <h1>Box {id}</h1>
       <Link to="/admin/students" className="btn btn-success">Back</Link>
       <ul className="list-group mt-3">
