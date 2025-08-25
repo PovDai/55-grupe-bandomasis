@@ -34,7 +34,7 @@ export function Create() {
     }
 
     return (
-        <div className='container-fluid py-4'>
+        <div className='container-fluid vh-100 py-4'>
             <div className='row justify-content-center'>
                 <div className='col-md-8 col-lg-6 bg-white p-4 rounded shadow-sm'>
                     <div className='d-flex justify-content-between align-items-center mb-3'>

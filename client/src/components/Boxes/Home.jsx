@@ -44,7 +44,7 @@ export function Home() {
   }
 
   return (
-    <div className='container-fluid bg-primary p-3'>
+    <div className='container-fluid vh-100 bg-primary p-3'>
       <h3>Boxes</h3>
       <div className='d-flex justify-content-end mb-3'>
         <Link className='btn btn-success' to='/admin/create'>Add Box</Link>

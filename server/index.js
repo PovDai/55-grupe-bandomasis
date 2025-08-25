@@ -14,6 +14,12 @@ import { addBox } from './src/api/admin/addBox.js';
 import { cookieParser } from './src/middleware/cookieParser.js'
 import { userData } from './src/middleware/userData.js'
 
+import { addContainer } from './src/api/admin/container/addContainer.js';
+import { getContainer } from './src/api/admin/container/getContainer.js';
+import { getContainerById } from './src/api/admin/container/getContainerById.js';
+import { editContainerById } from './src/api/admin/container/editContainerById.js';
+import { deleteContainerById } from './src/api/admin/container/deleteContainer.js';
+
 
 
 const app = express()
@@ -44,6 +50,12 @@ app.get('/api/admin/students', getBox);
 app.get('/api/admin/get_student/:id', getBoxById);
 app.post('/api/admin/edit_user/:id', editBoxById)
 app.delete('/api/admin/delete/:id', deleteBoxById);
+
+app.post('/api/admin/add_container', addContainer);
+app.get('/api/admin/containers', getContainer);
+app.get('/api/admin/get_container/:id', getContainerById)
+app.post('/api/admin/edit_container/:id', editContainerById);
+app.delete('/api/admin/deleteContainer/:id',deleteContainerById)
 
 
 
