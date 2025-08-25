@@ -34,60 +34,76 @@ export function Create() {
     }
 
     return (
-        <div className='container vh-100 vw-100 bg-primary'>
-            <div className='row'>
-                <h3>Add Box</h3>
-                <div className='d-flex justify-content-end'>
-                    <Link to='/admin/students' className='btn btn-success'>Back</Link>
-                </div>
-                <form onSubmit={handleSubmit}>
-                    <div className='form-group my-3'>
-                        <label>Name</label>
-                        <input type='text' required
-                               onChange={e => setValues({ ...values, name: e.target.value })} />
-                    </div>
-                    <div className='form-group my-3'>
-                        <label>Weight</label>
-                        <input type='number' required
-                               onChange={e => setValues({ ...values, weight: e.target.value })} />
-                    </div>
-
-                   <div className='form-group my-3'>
-                        <label>Image</label>
-                        <textarea required
-                                  value={values.image}
-                                  onChange={e => setValues({ ...values, image: e.target.value })}></textarea>
-                    </div> 
-                  <div className='form-group my-3'>
-    <label>Flammable</label>
-    <select
-        className='form-select select-short'
-        required
-        value={values.flammable}
-        onChange={e => setValues({ ...values, flammable: e.target.value })}
-    >
-        <option value=''>Pasirinkite</option>
-        <option value='yes'>Taip</option>
-        <option value='no'>Ne</option>
-    </select>
-</div>
-
-<div className='form-group my-3'>
-    <label>Perishable</label>
-    <select
-        className='form-select select-short'
-        required
-        value={values.perishable}
-        onChange={e => setValues({ ...values, perishable: e.target.value })}
-    >
-        <option value=''>Pasirinkite</option>
-        <option value='yes'>Taip</option>
-        <option value='no'>Ne</option>
-    </select>
+        <div className='container-fluid py-4'>
+            <div className='row justify-content-center'>
+                <div className='col-md-8 col-lg-6 bg-white p-4 rounded shadow-sm'>
+                    <div className='d-flex justify-content-between align-items-center mb-3'>
+                        <h3>Add Box</h3>
+                        <Link to='/admin/students' className='btn btn-success'>Back</Link>
                     </div>
                     
-                    <button type='submit' className='btn btn-success my-3'>Save</button>
-                </form>
+                    <form onSubmit={handleSubmit}>
+                        <div className='form-group my-3'>
+                            <label>Name</label>
+                            <input
+                                type='text'
+                                className='form-control'
+                                required
+                                onChange={e => setValues({ ...values, name: e.target.value })}
+                            />
+                        </div>
+
+                        <div className='form-group my-3'>
+                            <label>Weight</label>
+                            <input
+                                type='number'
+                                className='form-control'
+                                required
+                                onChange={e => setValues({ ...values, weight: e.target.value })}
+                            />
+                        </div>
+
+                        <div className='form-group my-3'>
+                            <label>Image</label>
+                            <textarea
+                                className='form-control'
+                                required
+                                value={values.image}
+                                onChange={e => setValues({ ...values, image: e.target.value })}
+                            ></textarea>
+                        </div>
+
+                        <div className='form-group my-3'>
+                            <label>Flammable</label>
+                            <select
+                                className='form-select'
+                                required
+                                value={values.flammable}
+                                onChange={e => setValues({ ...values, flammable: e.target.value })}
+                            >
+                                <option value=''>Pasirinkite</option>
+                                <option value='yes'>Taip</option>
+                                <option value='no'>Ne</option>
+                            </select>
+                        </div>
+
+                        <div className='form-group my-3'>
+                            <label>Perishable</label>
+                            <select
+                                className='form-select'
+                                required
+                                value={values.perishable}
+                                onChange={e => setValues({ ...values, perishable: e.target.value })}
+                            >
+                                <option value=''>Pasirinkite</option>
+                                <option value='yes'>Taip</option>
+                                <option value='no'>Ne</option>
+                            </select>
+                        </div>
+
+                        <button type='submit' className='btn btn-success my-3'>Save</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
