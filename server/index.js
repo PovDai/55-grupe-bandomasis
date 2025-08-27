@@ -21,6 +21,8 @@ import { deleteContainerById } from './src/api/admin/container/deleteContainer.j
 import { getLogin } from './src/api/public/getLogin.js';
 import { uploadMovieThumbnailImage } from './src/middleware/uploadMovieThumbnail.js';
 import { postImageUpload } from './src/api/admin/movies/postImageUpload.js';
+import multer from 'multer';
+
 
 
 
@@ -29,7 +31,9 @@ const app = express()
 
 app.use(express.static('public'));
 app.use(express.json());
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
 app.use(cookieParser);
 app.use(userData)
 
@@ -67,13 +71,18 @@ app.delete('/api/admin/deleteContainer/:id', deleteContainerById)
 app.post('/api/admin/upload-image', uploadMovieThumbnailImage.single('img'), postImageUpload);
 
 
-
-
 app.use((err, req, res, next) => {
+    if (err.code === 'LIMIT_FILE_SIZE') {
+        return res.status(400).json({
+            status: 'error',
+            msg: `Virsytas failo limitas (${formatFileSize(FILE_SIZE_LIMIT)})`,
+        });
+    }
+
     console.log(err);
+
     return res.status(500).send('Server error');
 });
-
 
 app.get('*error', (req, res) => {
     return res.json({

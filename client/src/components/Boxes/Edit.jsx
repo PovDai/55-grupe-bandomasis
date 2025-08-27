@@ -56,7 +56,7 @@ export function Edit() {
       const result = await res.json();
       console.log(result);
 
-      navigate("/students"); // grįžtam į home po sėkmingo atnaujinimo
+      navigate("/admin/students"); // grįžtam į home po sėkmingo atnaujinimo
     } catch (err) {
       console.error(err);
       setError("Failed to save student data");
