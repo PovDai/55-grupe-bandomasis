@@ -4,7 +4,6 @@ import helmet from "helmet";
 
 import { postRegister } from './src/api/public/postRegister.js';
 import { postLogin } from './src/api/public/postLogin.js';
-import { getLogin } from './src/api/public/getLogin.js'
 import { PORT } from './src/env.js';
 import { getBoxById } from './src/api/admin/getBoxById.js';
 import { editBoxById } from './src/api/admin/editBoxById.js';
@@ -19,10 +18,14 @@ import { getContainer } from './src/api/admin/container/getContainer.js';
 import { getContainerById } from './src/api/admin/container/getContainerById.js';
 import { editContainerById } from './src/api/admin/container/editContainerById.js';
 import { deleteContainerById } from './src/api/admin/container/deleteContainer.js';
+import { getLogin } from './src/api/public/getLogin.js';
+import { uploadMovieThumbnailImage } from './src/middleware/uploadMovieThumbnail.js';
+import { postImageUpload } from './src/api/admin/movies/postImageUpload.js';
 
 
 
 const app = express()
+
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -43,9 +46,12 @@ app.get('/', (req, res) => {
 
 app.post('/api/register', postRegister);
 app.post('/api/login', postLogin);
-app.get('/api/login', getLogin)
 
-app.post('/api/admin/add_user',addBox);
+app.get('/api/login',  getLogin);
+
+
+
+app.post('/api/admin/add_user', addBox);
 app.get('/api/admin/students', getBox);
 app.get('/api/admin/get_student/:id', getBoxById);
 app.post('/api/admin/edit_user/:id', editBoxById)
@@ -55,7 +61,10 @@ app.post('/api/admin/add_container', addContainer);
 app.get('/api/admin/containers', getContainer);
 app.get('/api/admin/get_container/:id', getContainerById)
 app.post('/api/admin/edit_container/:id', editContainerById);
-app.delete('/api/admin/deleteContainer/:id',deleteContainerById)
+app.delete('/api/admin/deleteContainer/:id', deleteContainerById)
+
+
+app.post('/api/admin/upload-image', uploadMovieThumbnailImage.single('img'), postImageUpload);
 
 
 

@@ -21,6 +21,7 @@ import { ReadContainer } from './components/containers/ReadContainer'
 
 
 
+
 export function App() {
 
 
@@ -34,6 +35,7 @@ export function App() {
               <Route path='/login' element={<LoginPage />} />
               <Route path='/logout' element={<LogoutPage />} />
             <Route path='/register' element={<RegisterPage />} />
+           
         
           </Route>
 

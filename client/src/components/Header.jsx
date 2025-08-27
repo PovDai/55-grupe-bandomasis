@@ -18,7 +18,7 @@ export function Header() {
                     </div>
                     <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                         <li><NavLink to="/" className="nav-link px-2 link-secondary">Home</NavLink></li>
-                        <li><NavLink to="#" className="nav-link px-2">Nothing here</NavLink></li>
+                        <li><NavLink to="/testing" className="nav-link px-2">Testing here</NavLink></li>
                     </ul>
                     <div className="col-md-3 text-end">
                         {isLoggedIn ? (

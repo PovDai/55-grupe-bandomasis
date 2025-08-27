@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+import defaultImg from '../../assets/default.png';
 
 export function Home() {
   const [data, setData] = useState([])
@@ -29,6 +30,7 @@ export function Home() {
     }
   }, [deleted])
 
+   const imgPath = 'http://localhost:5539/img/movies/' 
   async function handleDelete(id) {
     try {
       const res = await fetch(`http://localhost:5539/api/admin/delete/${id}`, {
@@ -67,7 +69,13 @@ export function Home() {
               <td>{box.id}</td>
               <td>{box.name}</td>
               <td>{box.weight} kg</td>
-              <td>{box.image}</td>
+<td>
+  <img 
+    src={box.image ? `http://localhost:5539${box.image}` : defaultImg} 
+    alt={box.name} 
+    style={{ height: '5rem', objectFit: 'contain' }} 
+  />
+</td>
               <td>{box.flammable}</td>
               <td>{box.perishable}</td>
               <td>

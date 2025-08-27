@@ -2,7 +2,8 @@ import { connection } from "../../db.js";
 
 export async function editBoxById(req, res) {
     const id = req.params.id;
-    const { name, weight, image, flammable, perishable } = req.body;
+    const { name, weight, image, flammable, perishable} = req.body;
+  
 
     try {
         const sql = `
