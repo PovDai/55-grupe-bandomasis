@@ -54,7 +54,7 @@ export function Edit() {
       }
 
       const result = await res.json();
-      console.log(result);
+      
 
       navigate("/admin/students"); // grįžtam į home po sėkmingo atnaujinimo
     } catch (err) {

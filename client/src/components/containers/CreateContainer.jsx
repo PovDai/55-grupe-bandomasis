@@ -37,7 +37,7 @@ export function CreateContainer() {
       if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
       const data = await res.json();
-      console.log(data);
+    
 
       navigate('/admin/containers');
     } catch (err) {

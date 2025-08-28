@@ -21,7 +21,8 @@ import { deleteContainerById } from './src/api/admin/container/deleteContainer.j
 import { getLogin } from './src/api/public/getLogin.js';
 import { uploadMovieThumbnailImage } from './src/middleware/uploadMovieThumbnail.js';
 import { postImageUpload } from './src/api/admin/movies/postImageUpload.js';
-import multer from 'multer';
+
+
 
 
 
@@ -58,7 +59,7 @@ app.get('/api/login',  getLogin);
 app.post('/api/admin/add_user', addBox);
 app.get('/api/admin/students', getBox);
 app.get('/api/admin/get_student/:id', getBoxById);
-app.post('/api/admin/edit_user/:id', editBoxById)
+app.post('/api/admin/edit_user/:id',editBoxById)
 app.delete('/api/admin/delete/:id', deleteBoxById);
 
 app.post('/api/admin/add_container', addContainer);
@@ -66,7 +67,6 @@ app.get('/api/admin/containers', getContainer);
 app.get('/api/admin/get_container/:id', getContainerById)
 app.post('/api/admin/edit_container/:id', editContainerById);
 app.delete('/api/admin/deleteContainer/:id', deleteContainerById)
-
 
 app.post('/api/admin/upload-image', uploadMovieThumbnailImage.single('img'), postImageUpload);
 
@@ -82,6 +82,13 @@ app.use((err, req, res, next) => {
     console.log(err);
 
     return res.status(500).send('Server error');
+});
+
+app.get('*error', (req, res) => {
+    return res.json({
+        status: 'error',
+        message: 'No such route',
+    });
 });
 
 app.get('*error', (req, res) => {
