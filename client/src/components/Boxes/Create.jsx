@@ -55,9 +55,7 @@ export function Create() {
         const serverImage = 'http://localhost:5539' + data.msg;
         setValues(prev => ({ ...prev, image: data.msg }));
 
-        // Jeigu nori, gali pakeisti img į serverio variantą
-        // setImg(serverImage);
-        // Jei norime rodyti vietinį preview visą laiką, tai čia nieko nekeičiam
+      
       } else {
         setImgErr(data.msg);
       }

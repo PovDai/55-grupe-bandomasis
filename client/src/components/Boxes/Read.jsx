@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router"
+import defaultImg from '../../assets/default.png';
 
  export  function Read() {
   const [box, setBox] = useState(null);
@@ -29,9 +30,14 @@ import { Link, useParams } from "react-router"
         <li className="list-group-item"><b>ID: </b>{box.id}</li>
         <li className="list-group-item"><b>Name: </b>{box.name}</li>
         <li className="list-group-item"><b>Weight: </b>{box.weight} kg</li>
-        <li className="list-group-item"><b>Image: </b>{box.image}</li>
         <li className="list-group-item"><b>Flammable: </b>{box.flammable}</li>
         <li className="list-group-item"><b>Perishable: </b>{box.perishable}</li>
+         <li className="list-group-item"><b>Image: </b><img
+          src={box.image ? `http://localhost:5539${box.image}` : defaultImg}
+          alt={box.name}
+          style={{ height: '5rem', objectFit: 'contain' }}
+          onError={(e) => { e.target.src = defaultImg; }}
+        /></li>
       </ul>
     </div>
   );
