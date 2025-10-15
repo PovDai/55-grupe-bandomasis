@@ -33,6 +33,19 @@ export function Sidebar() {
                             </Link>
                         </li>
                     </ul>
+                    <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                        <span>Market</span>
+                    </h6>
+
+                     <ul className="nav nav-pills flex-column">
+                        <li className="nav-item">
+                            <Link className="nav-link d-flex align-items-center gap-2 " to="/admin/stocks">
+                                Stocks
+                            </Link>
+                        </li>
+                    </ul>
+
+                    
                     
                 </div>
             </div>

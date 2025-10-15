@@ -41,7 +41,7 @@ export async function postLogin(req, res) {
 
         userObj = response[0];
     } catch (error) {
-        console.log(error);
+        
         return res.status(500).json({
             status: 'error',
             msg: 'Serverio klaida',
@@ -70,7 +70,7 @@ export async function postLogin(req, res) {
             });
         }
     } catch (error) {
-        console.log(error);
+        
         return res.status(500).json({
             status: 'error',
             msg: 'Serverio klaida',

@@ -71,6 +71,22 @@ app.delete('/api/admin/deleteContainer/:id', deleteContainerById)
 app.post('/api/admin/upload-image', uploadMovieThumbnailImage.single('img'), postImageUpload);
 
 
+const API_KEY = process.env.ALPHA_VANTAGE_KEY; // raktas saugomas .env faile
+
+app.get('/api/stock/:symbol', async (req, res) => {
+  const symbol = req.params.symbol.toUpperCase();
+  const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Nepavyko gauti duomenų' });
+  }
+});
+
+
 app.use((err, req, res, next) => {
     if (err.code === 'LIMIT_FILE_SIZE') {
         return res.status(400).json({

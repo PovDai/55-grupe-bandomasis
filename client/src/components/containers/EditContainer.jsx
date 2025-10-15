@@ -50,7 +50,7 @@ export function EditContainer() {
       }
 
       const result = await res.json();
-      console.log(result);
+      
 
       navigate("/admin/containers");
     } catch (err) {

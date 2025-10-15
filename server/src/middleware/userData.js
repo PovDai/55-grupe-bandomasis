@@ -29,7 +29,7 @@ export async function userData(req, res, next) {
             isLoggedIn: true,
         };
     } catch (error) {
-        console.log(error);
+        
     }
 
     return next();
