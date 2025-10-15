@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 export function StockTracker() {
   const [symbol, setSymbol] = useState('TSLA');
   const [data, setData] = useState(null);
@@ -18,11 +17,8 @@ export function StockTracker() {
       const json = await res.json();
       const quote = json['Global Quote'];
 
-      if (!quote) {
-        throw new Error('Nepavyko gauti duomenų iš API.');
-      }
+      if (!quote) throw new Error('Nepavyko gauti duomenų iš API.');
 
-      // Konvertuojame reikšmes į skaičius
       setData({
         symbol: quote['01. symbol'],
         open: parseFloat(quote['02. open']),
@@ -43,7 +39,6 @@ export function StockTracker() {
     }
   };
 
-  // Kviečiame API kai pasikeičia simbolis
   useEffect(() => {
     const delay = setTimeout(() => {
       fetchStockData(symbol.toUpperCase());
@@ -69,14 +64,8 @@ export function StockTracker() {
       {data && !loading && !error && (
         <div className="stock-card">
           <h2>{data.symbol}</h2>
-          <p className="price">
-            Dabartinė kaina: <strong>${data.price.toFixed(2)}</strong>
-          </p>
-          <p
-            className={`change ${
-              data.change >= 0 ? 'positive' : 'negative'
-            }`}
-          >
+          <p className="price">Kaina: ${data.price.toFixed(2)}</p>
+          <p className={`change ${data.change >= 0 ? 'positive' : 'negative'}`}>
             Pokytis: {data.change.toFixed(2)} ({data.changePercent})
           </p>
 

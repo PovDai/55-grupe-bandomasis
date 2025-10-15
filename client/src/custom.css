@@ -60,81 +60,104 @@
 .stock-container {
   max-width: 600px;
   margin: 40px auto;
-  padding: 25px;
-  background-color: #f8f9fa;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background: linear-gradient(145deg, #f0f4ff, #e0ebff);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .title {
   text-align: center;
-  color: #222;
-  margin-bottom: 20px;
+  color: #1a1a2e;
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .ticker-input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 2px solid #1a73e8;
+  margin-bottom: 25px;
   font-size: 16px;
+  transition: 0.3s;
+}
+
+.ticker-input:focus {
+  outline: none;
+  border-color: #ff6b6b;
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
 }
 
 .loading {
   text-align: center;
-  color: #007bff;
+  color: #1a73e8;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .error {
   text-align: center;
-  color: #dc3545;
+  color: #ff4d4f;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .stock-card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff, #dbe9ff);
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .stock-card h2 {
   text-align: center;
-  margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #0d1b2a;
 }
 
 .price {
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: #222;
-  margin-bottom: 5px;
+  color: #0d3b66;
+  margin-bottom: 8px;
 }
 
 .change {
   font-size: 18px;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .positive {
   color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .negative {
   color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
 }
 
 .details {
-  background: #f0f0f0;
-  padding: 12px;
-  border-radius: 8px;
+  background: #f1f7ff;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 .details p {
-  margin: 5px 0;
+  margin: 6px 0;
   font-size: 15px;
+  color: #1a1a2e;
 }
