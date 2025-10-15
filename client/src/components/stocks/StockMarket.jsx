@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 
-export function StockMarket() {
+export function StockTracker() {
   const [symbol, setSymbol] = useState('TSLA');
-  const [price, setPrice] = useState(0);
-  const [changePercent, setChangePercent] = useState(0);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -12,59 +11,83 @@ export function StockMarket() {
     if (!currentSymbol) return;
     setLoading(true);
     setError(null);
+    setData(null);
 
     try {
-    
       const res = await fetch(`http://localhost:5539/api/stock/${currentSymbol}`);
-      const data = await res.json();
+      const json = await res.json();
+      const quote = json['Global Quote'];
 
-      const quote = data['Global Quote'];
-      if (!quote) throw new Error("Nepavyko gauti duomenų. Patikrinkite simbolį.");
+      if (!quote) {
+        throw new Error('Nepavyko gauti duomenų iš API.');
+      }
 
-      setPrice(parseFloat(quote['05. price']));
-      setChangePercent(parseFloat(quote['10. change percent']));
-
+      // Konvertuojame reikšmes į skaičius
+      setData({
+        symbol: quote['01. symbol'],
+        open: parseFloat(quote['02. open']),
+        high: parseFloat(quote['03. high']),
+        low: parseFloat(quote['04. low']),
+        price: parseFloat(quote['05. price']),
+        volume: parseInt(quote['06. volume']),
+        latestDay: quote['07. latest trading day'],
+        previousClose: parseFloat(quote['08. previous close']),
+        change: parseFloat(quote['09. change']),
+        changePercent: quote['10. change percent'],
+      });
     } catch (err) {
-      console.error("Klaida gaunant akcijų duomenis:", err);
+      console.error('Klaida gaunant akcijų duomenis:', err);
       setError(err.message);
-      setPrice(0);
-      setChangePercent(0);
     } finally {
       setLoading(false);
     }
   };
 
-  // Live search su debounce (500ms)
+  // Kviečiame API kai pasikeičia simbolis
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      if (symbol) fetchStockData(symbol.toUpperCase());
+    const delay = setTimeout(() => {
+      fetchStockData(symbol.toUpperCase());
     }, 500);
-
-    return () => clearTimeout(delayDebounceFn);
+    return () => clearTimeout(delay);
   }, [symbol]);
 
   return (
-    <div className="app-container">
-      <h1 className="header">📈 Akcijų Stebėjimas (Server Proxy)</h1>
+    <div className="stock-container">
+      <h1 className="title">📈 Akcijų Stebėjimas</h1>
 
       <input
         type="text"
-        placeholder="Akcijos Tikeris (pvz., AAPL)"
+        placeholder="Įveskite tikerį (pvz. TSLA, AAPL)"
         value={symbol}
         onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-        className="input"
+        className="ticker-input"
       />
 
-      {loading && <p>Kraunama...</p>}
-      {error && <p className="error-message">Klaida: {error}</p>}
+      {loading && <p className="loading">Kraunama...</p>}
+      {error && <p className="error">❌ {error}</p>}
 
-      {!loading && !error && price > 0 && (
-        <div className="stock-details-card">
-          <h2>{symbol.toUpperCase()}</h2>
-          <p className="current-price">Kaina: ${price.toFixed(2)}</p>
-          <p className={`change-percent ${changePercent >= 0 ? 'positive' : 'negative'}`}>
-            Pokytis: {changePercent >= 0 ? '+' : ''}{changePercent}%
+      {data && !loading && !error && (
+        <div className="stock-card">
+          <h2>{data.symbol}</h2>
+          <p className="price">
+            Dabartinė kaina: <strong>${data.price.toFixed(2)}</strong>
           </p>
+          <p
+            className={`change ${
+              data.change >= 0 ? 'positive' : 'negative'
+            }`}
+          >
+            Pokytis: {data.change.toFixed(2)} ({data.changePercent})
+          </p>
+
+          <div className="details">
+            <p>Atidarymo kaina: ${data.open.toFixed(2)}</p>
+            <p>Aukščiausia: ${data.high.toFixed(2)}</p>
+            <p>Žemiausia: ${data.low.toFixed(2)}</p>
+            <p>Uždarymas (praeitas): ${data.previousClose.toFixed(2)}</p>
+            <p>Apyvarta: {data.volume.toLocaleString()} vnt.</p>
+            <p>Paskutinė prekybos diena: {data.latestDay}</p>
+          </div>
         </div>
       )}
     </div>
