@@ -48,7 +48,7 @@ export function StockTracker() {
 
   return (
     <div className="stock-container">
-      <h1 className="title">📈 Akcijų Stebėjimas</h1>
+      <h1 className="title">📈 Akcijų Stebėjimas max 25 in day</h1>
 
       <input
         type="text"

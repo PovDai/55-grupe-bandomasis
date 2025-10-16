@@ -17,6 +17,8 @@ import { CreateContainer } from './components/containers/CreateContainer'
 import { EditContainer } from './components/containers/EditContainer'
 import { ReadContainer } from './components/containers/ReadContainer'
 import {StockTracker } from './components/stocks/StockMarket'
+import { Nasa } from './components/nasa/Nasa'
+import { AdvicePage } from './components/advice/AdvicePage'
 
 
 
@@ -46,7 +48,9 @@ export function App() {
             <Route path="/admin/create" element={<Create />} />
             <Route path="/admin/edit/:id" element={<Edit />} />
             <Route path="/admin/read/:id" element={<Read />} />
-            <Route path="/admin/stocks/" element={<StockTracker/>}/>
+            <Route path="/admin/stocks/" element={<StockTracker />} />
+            <Route path='/admin/nasa/' element={<Nasa />} />
+            <Route path='admin/advice' element={<AdvicePage/>}/>
      
 
             <Route path='/admin/containers' element={<HomeContainer />} />

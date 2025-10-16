@@ -71,7 +71,8 @@ app.delete('/api/admin/deleteContainer/:id', deleteContainerById)
 app.post('/api/admin/upload-image', uploadMovieThumbnailImage.single('img'), postImageUpload);
 
 
-const API_KEY = process.env.ALPHA_VANTAGE_KEY; // raktas saugomas .env faile
+const API_KEY = process.env.ALPHA_VANTAGE_KEY; 
+
 
 app.get('/api/stock/:symbol', async (req, res) => {
   const symbol = req.params.symbol.toUpperCase();
@@ -83,6 +84,38 @@ app.get('/api/stock/:symbol', async (req, res) => {
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: 'Nepavyko gauti duomenų' });
+  }
+});
+
+
+const NASA_API_KEY = process.env.NASA_API_KEY;
+app.get("/api/apod", async (req, res) => {
+  try {
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`);
+    if (!response.ok) throw new Error("NASA API error");
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Klaida gaunant NASA duomenis:", error.message);
+    // Fallback duomenys
+    res.json({
+      title: "NASA duomenų nėra",
+      date: new Date().toISOString().slice(0,10),
+      explanation: "Šiuo metu negalima gauti NASA APOD duomenų.",
+      url: "https://via.placeholder.com/600x400?text=NASA+APOD+Unavailable",
+      media_type: "image"
+    });
+  }
+});
+
+app.get('/api/advice', async (req, res) => {
+  try {
+    const response = await fetch('https://api.adviceslip.com/advice');
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Nepavyko gauti patarimo' });
   }
 });
 
